@@ -4,10 +4,10 @@ jobs:
     docker:
       - image: golang:1.8
 
-    working_directory: /go/src/github.com/mlabouardy/lambda-circleci
+    working_directory: /go/src/github.com/orlando1409/serverless-ci-cd-pipeline
 
     environment:
-        S3_BUCKET: movies-api-deployment-packages
+        S3_BUCKET: circleci-lambda-demo
 
     steps:
       - checkout
@@ -18,15 +18,6 @@ jobs:
           apt-get update
           apt-get install -y zip python-pip python-dev
           pip install awscli
-
-      - run:
-          name: Test
-          command: |
-           go get -u github.com/golang/lint/golint
-           go get -t ./...
-           golint -set_exit_status
-           go vet .
-           go test .
 
       - run:
          name: Build
