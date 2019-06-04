@@ -17,7 +17,9 @@ jobs:
          command: |
           apt-get update
           apt-get install -y zip python-pip python-dev
+          apt-get
           pip install awscli
+          go get -u github.com/aws/aws-lambda-go/events
 
       - run:
          name: Build
